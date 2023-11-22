@@ -2,7 +2,7 @@ variable "prefix" {
   type        = string
   description = "This prefix will be included in the name of most resources."
   validation {
-    condition = can(regex("^[a-z0-9][a-z0-9\\.\\-]+$", var.prefix))
+    condition     = can(regex("^[a-z0-9][a-z0-9\\.\\-]+$", var.prefix))
     error_message = "S3 bucket names can only contain lowecase letters, numbers, hyphens, or dots."
   }
 }

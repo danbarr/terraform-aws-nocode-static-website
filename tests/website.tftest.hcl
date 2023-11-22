@@ -3,6 +3,8 @@ variables {
   region     = "us-east-2"
   env        = "test"
   department = "PlatformEng"
+
+  expired_version_retention_days = 14
 }
 
 
@@ -30,11 +32,26 @@ run "input_validation" {
   variables {
     prefix = "InvalidPrefix"
     env    = "sandbox"
+
+    expired_version_retention_days = 0
   }
 
   expect_failures = [
     var.prefix,
     var.env,
+    var.expired_version_retention_days,
+  ]
+}
+
+run "retention_days_max" {
+  command = plan
+
+  variables {
+    expired_version_retention_days = 366
+  }
+
+  expect_failures = [
+    var.expired_version_retention_days
   ]
 }
 
