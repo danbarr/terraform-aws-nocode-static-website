@@ -23,6 +23,9 @@ run "unit_test" {
     condition     = one(aws_s3_bucket_ownership_controls.www_bucket.rule).object_ownership == "BucketOwnerEnforced"
     error_message = "Bucket object ownership should be BucketOwnerEnforced."
   }
+
+  # Need this because the check can't be evaluated at plan time
+  expect_failures = [check.web_health]
 }
 
 run "input_validation" {
@@ -51,7 +54,8 @@ run "retention_days_max" {
   }
 
   expect_failures = [
-    var.expired_version_retention_days
+    var.expired_version_retention_days,
+    check.web_health # Need this because the check can't be evaluated at plan time
   ]
 }
 
