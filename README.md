@@ -1,4 +1,4 @@
-# Terraform module aws-nocode-s3-static-website
+# Terraform module aws-nocode-static-website
 
 Provisions an AWS S3 bucket configured for static website hosting, with a sample HashiCafe website.
 

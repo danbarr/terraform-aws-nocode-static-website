@@ -7,7 +7,6 @@ variables {
   expired_version_retention_days = 14
 }
 
-
 provider "aws" {
   region = "us-east-2"
 }
