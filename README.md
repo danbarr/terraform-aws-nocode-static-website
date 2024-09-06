@@ -1,4 +1,4 @@
-# Terraform module aws-nocode-s3-static-website
+# Terraform module aws-nocode-static-website
 
 Provisions an AWS S3 bucket configured for static website hosting, with a sample HashiCafe website.
 
@@ -14,25 +14,22 @@ For no-code provisioning, AWS credentials must be supplied to the workspace via 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0, < 5.17.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.4 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.17.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
-
-## Modules
-
-No modules.
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0, < 5.17.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | ~> 3.4 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
 | [aws_s3_bucket.www_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
+| [aws_s3_bucket_lifecycle_configuration.www_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_lifecycle_configuration) | resource |
 | [aws_s3_bucket_ownership_controls.www_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_ownership_controls) | resource |
 | [aws_s3_bucket_policy.www_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) | resource |
 | [aws_s3_bucket_public_access_block.www_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) | resource |
@@ -48,10 +45,11 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_department"></a> [department](#input\_department) | Value for the department tag. | `string` | `"WebDev"` | no |
 | <a name="input_env"></a> [env](#input\_env) | Value for the environment tag. | `string` | n/a | yes |
+| <a name="input_expired_version_retention_days"></a> [expired\_version\_retention\_days](#input\_expired\_version\_retention\_days) | Number of days to retain expired versions. | `number` | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | This prefix will be included in the name of most resources. | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The region where the resources are created. | `string` | n/a | yes |
+| <a name="input_department"></a> [department](#input\_department) | Value for the department tag. | `string` | `"WebDev"` | no |
 
 ## Outputs
 
